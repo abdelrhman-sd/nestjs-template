@@ -1,6 +1,6 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { HttpExceptionFilter } from './filters/http-exception.filter';
+import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { UnprocessableEntityException, ValidationError, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
@@ -10,9 +10,9 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter);
 
   app.useGlobalPipes(new ValidationPipe({
+    transform: true,
     whitelist: true,
     forbidNonWhitelisted: true,
-    transform: true,
     exceptionFactory: (errors: ValidationError[]): UnprocessableEntityException =>
       HttpExceptionFilter.groupValidationErrors(errors),
   }));
