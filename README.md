@@ -99,13 +99,10 @@ Validation runs at startup via Joi (`src/config/env.validation.ts`). If any requ
 ## Getting started
 
 ```bash
-# 1. Start infrastructure
-docker-compose up -d
-
-# 2. Install dependencies
+# 1. Install dependencies
 npm install
 
-# 3. Run in development
+# 2. Run in development
 npm run start:dev
 ```
 
@@ -119,10 +116,12 @@ Catches all unhandled exceptions and returns a consistent error shape:
 
 ```json
 {
+  "success": false,
   "statusCode": 400,
-  "message": "Bad Request",
-  "timestamp": "2025-05-19T12:00:00.000Z",
-  "path": "/api/resource"
+  "error": {
+    "message": "Bad Request",
+    "details": []
+  }
 }
 ```
 
@@ -132,8 +131,9 @@ Wraps all successful responses in a consistent envelope:
 
 ```json
 {
-  "data": { ... },
+  "success": true,
   "statusCode": 200
+  "data": { ... },
 }
 ```
 
