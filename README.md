@@ -50,9 +50,19 @@ export class AppModule {}
 // core/core.module.ts
 @Module({
   imports: [
+
     ConfigModule.forRoot(configModuleOptions),
-    CacheModule.registerAsync({ isGlobal: true, imports: [ConfigModule], useClass: CacheModuleConfigFactory }),
-    TypeOrmModule.forRootAsync({ imports: [ConfigModule], useClass: TypeOrmModuleConfigFactory }),
+
+    CacheModule.registerAsync({
+      isGlobal: true,
+      imports: [ConfigModule],
+      useClass: CacheModuleConfigFactory
+    }),
+
+    TypeOrmModule.forRootAsync({
+      imports: [ConfigModule],
+      useClass: TypeOrmModuleConfigFactory
+    }),
   ],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: TransformResponseInterceptor },
