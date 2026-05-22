@@ -1,0 +1,32 @@
+# dependencies
+node_modules
+
+# build output
+dist
+
+# environment files
+.env
+.env.*
+
+# git
+.git
+.gitignore
+
+# docker
+.dockerignore
+docker-compose*.yml
+
+# logs
+logs
+*.log
+
+# editor
+.vscode
+.idea
+
+# os
+.DS_Store
+Thumbs.db
+
+# test
+coverage
